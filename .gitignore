@@ -1,4 +1,4 @@
-db-data/postgres/*
-db-data/redis/*
+db-data/postgres/
+db-data/redis/
 myapp
 /myapp.exe

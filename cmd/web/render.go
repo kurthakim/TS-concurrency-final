@@ -13,7 +13,7 @@ type TemplateData struct {
 	StringMap     map[string]string
 	IntMap        map[string]int
 	FloatMap      map[string]float64
-	DataMap       map[string]any
+	Data       map[string]any
 	Flash         string
 	Warning       string
 	Error         string
@@ -26,10 +26,10 @@ type TemplateData struct {
 func (app *Config) render(w http.ResponseWriter, r *http.Request, t string, td *TemplateData) {
 	partials := []string{
 		fmt.Sprintf("%s/base.layout.gohtml", pathToTemplates),
-		fmt.Sprintf("%s/header.layout.gohtml", pathToTemplates),
-		fmt.Sprintf("%s/navbar.layout.gohtml", pathToTemplates),
-		fmt.Sprintf("%s/footer.layout.gohtml", pathToTemplates),
-		fmt.Sprintf("%s/alerts.layout.gohtml", pathToTemplates),
+		fmt.Sprintf("%s/header.partial.gohtml", pathToTemplates),
+		fmt.Sprintf("%s/navbar.partial.gohtml", pathToTemplates),
+		fmt.Sprintf("%s/footer.partial.gohtml", pathToTemplates),
+		fmt.Sprintf("%s/alerts.partial.gohtml", pathToTemplates),
 	}
 
 	var templateSlice []string
@@ -50,7 +50,7 @@ func (app *Config) render(w http.ResponseWriter, r *http.Request, t string, td *
 		return
 	}
 
-	if err := tmpl.Execute(w, nil); err != nil {
+	if err := tmpl.Execute(w, app.AddDefaultData(td, r)); err != nil {
 		app.ErrorLog.Println(err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
