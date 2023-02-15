@@ -1,2 +1,4 @@
 db-data/postgres/*
 db-data/redis/*
+myapp
+/myapp.exe
