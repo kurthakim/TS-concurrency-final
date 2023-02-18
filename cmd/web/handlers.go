@@ -162,19 +162,30 @@ func (app *Config) ActivateAccount(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-		app.Session.Put(r.Context(), "error", "Account activated. You can now log in.")
+		app.Session.Put(r.Context(), "flash", "Account activated. You can now log in.")
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
+}
 
+func (app *Config) SubscribeToPlan(w http.ResponseWriter, r *http.Request) {
+	// get the id of the plan that is chosen
+
+	// get the plan from the database
+
+	// get the user from the session
 
 	// generate an invoice
 
-	// send an email with attachments
 
 	// send an email with the invoice attached
 
-	// subscribe the user to an account
-}
+	// generate a manual
 
+	// send an email with the manual attached
+
+	// subscribe the user to an account
+
+	// redirect
+}
 
 func (app *Config) ChooseSubscription(w http.ResponseWriter, r *http.Request) {
 	if !app.Session.Exists(r.Context(), "userID") {
