@@ -73,8 +73,7 @@ func (u *UserTest) GetOne(id int) (*User, error) {
 
 // Update updates one user in the database, using the information
 // stored in the receiver u
-func (u *UserTest) Update() error {
-
+func (u *UserTest) Update(user User) error {
 	return nil
 }
 
@@ -85,13 +84,11 @@ func (u *UserTest) Delete() error {
 
 // DeleteByID deletes one user from the database, by ID
 func (u *UserTest) DeleteByID(id int) error {
-
 	return nil
 }
 
 // Insert inserts a new user into the database, and returns the ID of the newly inserted row
 func (u *UserTest) Insert(user User) (int, error) {
-
 	return 2, nil
 }
 
